@@ -1,0 +1,73 @@
+
+
+AWS FAQ — S3
+AWS FAQ — RDS
+
+
+S3 - Glacier Deep Archive
+
+
+AWS FAQ — VPC
+
+AWS FAQ — EC2
+AWS FAQ — Route 53
+API Gateway 
+DynamoDB 
+Lambda
+AWS FAQ — SQS
+ / 
+
+
+Auroa DB Notes 
+- Encryption yes ON transit and at rest 
+- Un-encrypted to encrypted db  - migrate the data
+
+S3 FAQ Notes 
+- IPV6 - all s3 feature are not available on IPv6 : feature are Static website hosting / Bit-torrent are not supported.
+- IPv6 are not available on all region 
+- S3 tags can be user for IAM policies , S3 lifecycle policies, customized storage metrics , cross region replication 
+- S3 tags can be added any time 
+- S3 Cross region replication - tags are getting replicated / For new tags additional permissions are required. 
+- Storage class Analysis : This helps in analyzing the access pattern for S3 objects based on tags/prefix/bucket on daily basis, which can be viewed 	from S3 AWS console OR can be exported to a S3 bucket and analyzed on AWS QuickSight.   
+- S3 inventory provide alternative for Synchronization API list, which produce CSV,OCR, and Parquet file format - this can be used for speed up business workflow and big data jobs. THis reports can be exported to S3 buckets. 
+- S3 Batch operations : This automated execute,management and request of S3 operation / Lambda function on multiple s3 objects.  S3 Batch operation, manages retries , display progress, provide completion report and logs every event occurs on S3 objects in CloudTrail.
+- S3 Object lock : Added delete protection for S3 objects which helps in retaining a object based in "Retain Until Date" or "Legal Hold Date". It helps in implementing WORM (write once read many). This can be applied during deploying in Governance Mode Or using specific IAM Policy , in strong Governance mode this can't be removed. "Legal Hold" are immutable. 
+- S3 Cloud Watch metrics : Using AWS S3 console one can enable 1 minute cloud watch metrics. It can be applied / filtered base on prefix/tags
+- S3 Lifecycle policy : To transition objects between different storage class . It can be implemented using - AWS console, AWS CLI, AWS SDK, S3 Rest API
+- S3 Cross Region Replication : Shared prefix level/Bucket level/Object level replication of objects across regions.
+- S3 Same Region Replication : Shared prefix level/bucket level/Object level replication of objects within same region.THis is used for aggregating logs from different bucket within a region / storing object in different AWS account within a same region .  
+- S3 (99.99%) > S3 IA (99.90%) > S3 IA -One Zone (99.50%)
+- S3 is a regional service - store object in the selected regions ONLY, across three availability zone. 
+- There is NO data transfer cost/charges within same region. 
+- Security : Bucket ACL/Object level ACL/ Upload & download - SSL over HTTPS 
+- How to control access in S3 - 
+	IAM policy - user base policy/ role base policy
+	Policies - user polices / resource level policy 
+	ACL - Bucket level ACL/ Object Level ACL
+	Query String Authentication (One can create a custom URL to access a specific object within a S3 bucket for limited amount of time)
+	
+- VPC Gateway endpoint for S3 - accessing S3 buckets from VPC without passing through the Internet. 
+- Amazon Macie : Amazon Macie is an AI powered serivce that helps in automatic classification/ discovery and protection of sensitive data . It can continuously monitor the access of S3 contents and raise alarms on detection of any abnormalities. It can also be use in conjugation with Lambda function which can change password , when unauthorized access event is detected.  
+- S3 versionning protect objects by creating a version any time a object is PUT/DELETE/POST/COPY. 
+- S3 intelligent Tiering : Automatically identify the access pattern of the object and when the objects are not access for 30 day , automatically moves the object to cheaper storage class to save cost. When request for access arrives it move back the objects back to frequent access tier for quicker access. It can always provide the durrablity of the S3 class (99.9999999999) and availability of 99.99%
+- There are two ways to move an object to S3 intelligent Tiering  - by setting x-amz-storage-class header to "INTELLIGENT_TIERING" or by setting life cycle policy to move objects from S3 storage to S3 intelligent Tiering.
+- S3 IA (infrequent access) - 128KB minimum size of the object. 
+- S3 IA (One Zone) - It stores objects in one a single availability zone unlike other S3 store class where the object are store in three separate availability zone. 
+- S3 IA One zone are set at the object level. Object can be place in the same bucket as that of the S3 or S3-IA. 
+- S3 IA, S3 IA one Zone , S3 - the availability zone are selected by the availability of the capacity , user can't select the availability zone of their choice within the region. (Region they can select).
+- S3 Glacier : 
+- S3 Glacier Deep archive : This storage class for data that are store in archive for 7-10 year or more. Minimum of 160 days , can be retrieve 12 hours or less. This can be access from s3 deep achieve console. 
+- S3 Query in Place : S3 Select | Athena | S3 Redshift - provide a mechanism to run SQL quires on un-structure data while they are stored in S3 bucket without any need for ETL process to extract / Transform and Load data.  
+- Amazon Athena is interactive query service that make it easy to analyzed data stored in S3 bucket. 
+- Amazon Redshift Spectrum - allows running SQL quires on Exabyte size of un-structure data , without any need for ELT   
+
+
+
+
+
+
+
+
+
+
+ 
