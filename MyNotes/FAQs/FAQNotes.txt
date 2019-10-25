@@ -1,21 +1,48 @@
-
+https://aws.amazon.com/faqs/
 
 AWS FAQ — S3
 AWS FAQ — RDS
+AWS FAQ - Route 53
+AWS FAQ - Lambda
+
+AWS FAQ — VPC
+AWS FAQ — EC2
+AWS FAQ - EBS 
+AWS FAQ - ELB
+AWS FAQ - ALB
+
+
+
+AWS FAQ - API Gateway
+
+
 
 
 S3 - Glacier Deep Archive
-
+AWS FAQ - DynamoDB
+AWS FAQ - Aurora DB 
 
 AWS FAQ — VPC
-
 AWS FAQ — EC2
-AWS FAQ — Route 53
-API Gateway 
-DynamoDB 
-Lambda
+AWS FAQ - EBS 
+AWS FAQ - ELB
+AWS FAQ - ALB 
+
+AWS FAQ - Auto Scaling
+AWS FAQ - CloudFront 
+AWS FAQ - IAM 
 AWS FAQ — SQS
- / 
+AWS FAQ - SNS
+
+
+
+
+
+What is ?
+AWS Batch 
+AWS CloudComits
+AWS CodeDeploy / AWS CodePipeline 
+
 
 
 Auroa DB Notes 
@@ -59,7 +86,122 @@ S3 FAQ Notes
 - S3 Glacier Deep archive : This storage class for data that are store in archive for 7-10 year or more. Minimum of 160 days , can be retrieve 12 hours or less. This can be access from s3 deep achieve console. 
 - S3 Query in Place : S3 Select | Athena | S3 Redshift - provide a mechanism to run SQL quires on un-structure data while they are stored in S3 bucket without any need for ETL process to extract / Transform and Load data.  
 - Amazon Athena is interactive query service that make it easy to analyzed data stored in S3 bucket. 
-- Amazon Redshift Spectrum - allows running SQL quires on Exabyte size of un-structure data , without any need for ELT   
+- Amazon Redshift Spectrum - allows running SQL quires on Exabyte size of un-structure data , without any need for ELT  
+
+
+RDS 
+- RDS enhance monitoring - enabling it , enables deeper visibility in the system level metrics of the RDS instances like - CPU, memory , file system , disk IO  etc.
+- Enhance monitoring (performance insight) are supported by all RDS engine 
+- Enhance monitoring can be viewed from RDS console as well as from the cloudWatch metrics , RDS console retains performance metrics data for 1 Hr in past , with 1 second granularity.
+- CloudWatch Vs RDS console dashboard - for historical data which are not in RDS dashboard needs to be viewed from CloudWatch metrics, or third party tool can be integrated. 
+- RDS read replicas - to scale in RDS database beyond single DB instance capability for read heavy DB instance, its uses RDS instance native replication capability to create read replicas thus based on RDS engine the replication lags depends. 
+- Read Replicas scenarios : Read heavy database | for scaling beyond available IOPS for read heavy operation | for data warehousing workload | for Disaster recovery - within region or cross region.
+- DB Backup must be enabled - Retention period should be greater than zero (0) for creating read replicas.
+- DB engine type supporting read replicas 
+	- RDS Aruro DB - ALL INSTANCES 
+	- MYQSL - higher than 5.6
+	- PostGreSQL - higher than 9.5.5 
+	- MariaDB - all version 
+	- Oracle DB - Version higher than 12.1.0.2.v12
+- DB read replicas creation - CreateDBInstanceReadReplica > SourceDBInstanceIdentifier (define source DB) > inherits sourceDB engine version and storage allocation > Source DB Snapshot is created for the replication during which IO suspension on the source occurs to avoid this create snapshot from Multi-AZ backup instance instead of source main DB instance.
+- Max read replicas : MYSQL, PostGreSQL, MariaDB , ORacle DB all support max up to 5 read replicas.
+- Cross region Read Replicas are allowed 
+- Read Replicas are asynchronous replication.
+- REad Replicas and Multi AZ can be occur together : Read Replicas for read request scalability , multi Az for higher fault tolerant. 
+- Read Replicas of Multi AZ instances, instead of primary DB instance is possible.
+- In case of multi az failover, once the failover process completed, read replicas will resume asynchronous replication from the newly promoted DB instances.
+- Read Replicas of read replicas are ONLY supported for - MYSQL, Aurora DB , MariaDB . PostGreSQL and ORacle are currently NOT supported.   
+- MySQL Read replicas supports DDL other than read operation - eg. to create a additional index for read operation which will be creted for read replicas not for the primary DB
+- Read replicas can be promoted as standAlone database. 
+- Read replicas dont automatically change the engine or storage when primary DB is scaled. 
+- What happens when a read replicas is deleted 
+	- In case of Auroa DB one of the read replicas will be promoted as primary DB.
+	- In case of MY SQL - read replicas will still handle read traffic once primary is deleted 
+	- In case of PostGreSQL - each of the read replicas will be promoted as primary DB, and will accept both read and write traffic.
+- For Read replicas there is no cost of data transfer within a same region.
+- Multi AZ configuration - Primary DB and standBy DB , does not need manual intervention to promote standBY DB to primary DB on an event of Primary DB failover. 
+- Multi AZ setup can be added during the creation time or existing DB can be modified to add multi AZ configuration 
+- What happens when a Muti AZ is set on a standard RDS instance 
+	- A snapshot is create 
+	- A new DB instance is created in a separate AZ then that of the Primary DB, within the same region. (one can't select the AZ, once created one can view the AZ) 
+	- Synchronously replicate standBY DB from the PriamryDB
+- AWS recommends - Provision IOPS , with adequately large DB engine to be used for Multi AZ setup. 	
+- Force failover - intentionally failover 
+- DB Parameter group - its a container for configuration management > RDS instance can be created without mentioning one in that case, a default DB group will be implemented . In case one defines a DB parameter group then the configuration can be applied to all DB instances using the same DB parameter group. 
+- DB Subnet group : is a collection of subnets that RDS will use to create RDS instance within the choices of the subnets by the user. Best Practice to have a subnet from every AZ within the subnet group 
+- DB instance form outside the VPC can be brought inside by creating a snapshot of the DB instances and restoring it within the subnet group of the VPC. However the same is NOT true when for moving a instance outside the VPC.  
+
+
+Route 53 FAQ
+
+DNS Resolver (Recursive DNS Service) : Route 53 is both authoritative DNS service and Recursive DNS Service - Authoritative DNS service is the one that answer the final call for translating the human readable name to destination service, but most of the case clients will NOT call/interact with the authoritative DNS service instead it will interact with the recursive DNS service . When a recursive DNS service receive a request - either it forward the request to the other DNS resolver for an answer or recursively search for an answer from the top of the ROOT of the domain to find the service destination.  Once find a matching results it will store the result in the cache for replying other queries and forward the response back to the caller. 
+
+DNS resolver can do conditional forwarding OR DNS lookup
+
+ICANN - governing body - Whois database manages registration details for each register domain. 
+
+
+Lambda FAQ 
+
+Max execution time = 15 min
+Max memory allocation = 3GB , min 128 MB - incremental of 64MB the memory get added (one needs to select the max memory / timeout / CPU usages) 
+Encryption - Key - for encrypting system properties 
+Using mobile SDK - one can build mobile backend function in lambda function they can be synchronous call or asynchronous call . Using mobile SDK context object lambda function can gain insight on the device and the application that is making the call. 
+Troubleshooting lambda function - using x-ray one can use troubleshoot a lambda function : One need to add x-ray permission to lambda function & change the function trace mode to "active". Then x-Ray will be able to trace each call made to the Lambda function, it can give the overhead , function init, execution time also one can use x-ray SDK to add own trace within the lambda function.    
+There is NO maintance window for Lambda functions 
+There is NO maximum limit of lambda function that be be trigger at once - however there are account wise safety limits. 
+What happens when account exceeded default throttling limits  - for synchronous call its get HTTP 429 error (Too many request). for asynchronous calls Lambda Function can handle a burst of request exceeding more then the limits for 10-15 min max beyond then it start rejecting. For event triggered by the S3 - it retries for 24 hours/ for kinesis or dynamoDB streams it retries till the event expires.  
+If lambdaFunction fails - for s3 objects it retries for 3 time for Kinesis / dynamoDB it retried till the event expires. When retries exausted it moves to a Dead Letter Queue (DLQ) . DLQ can be configure within Lambda function console it can be a SNS topic or SQS queue 
+For accessing AWS services by lambda function - one need to configure appropriate IAM role within the Lambda function .
+For S3 to send message to Lambda function - resource policy needs to be created to provide the access.
+For for Lambda function to poll Dynamo DB or Kinesis stream - IAM policy needs to be attached to the Lambda function .
+For access SQS queue - either Lambda function role or resource policy can be use - if both exists the least privileged one will be applicable. 
+Lambda VPC 
+- Lambda function can be define within VPC to access services within VPC or within on premise using direct link connection. 
+- At a given time only one VPC can be associate with the lambda function 
+- For lambda function define in the private subnet of the VPC to access external endpoint over Internet it needs a NAT gateway / instance. 
+- Lambda function can't be configure in the dedicated VPC - one needs to peer a non-dedicated VPC to the dedicated VPC and use that VPC for hosting Lambda function. 
+
+
+AWS VPC - 05:27 10/25
+BYOIP is needed for the following reasons 
+- IP Reputation 
+- IP white listing 
+- IP hard-codding 
+- Regulation and compliance
+How to use BYOIP ?
+- Create Elastic IP from your BYOIP - they will be available on a pool, attach them to AWS service , when release they goes back to the pool. 
+- Maximum upto 5 IP rang can be brought to an AWS account 
+
+PartnerLink : 
+- Using partner link AWS services can be directly accessed from the VPC without going through the Internet
+- Network load balancer can be connect to the partner link to make it available to the other AWS customers . 
+- to create a partner link create a interface VPC endpoint for the desired service and update the route table to route traffic to the endpoint - thus any traffic from the VPC or from the on premises services connected through direct connect (DX) will traverse to the service without passing through the Internet.
+- Data transfer to Interface VPC endpoints across AZs are chargeable.
+
+ClassicLink : 
+- TO connect VPC services to the EC2-classic instances.
+- Limitation 
+	- ONLY allowed VPC CIDR 10.0.0.0/8
+	- It can only access VPC services can't access service outside VPC including Internet gateways , VPN connection or services hosted in the peered VPC.    
+	- ClassicLink endpoint will NOT last through the stop/start cycle of the EC2 instances , one need to link back the EC2 classic instance to VPC after stop/start - it can survived reboot.
+
+Peering Connection 
+	- peering between two region is possible.
+    - No edge to edge routing - connecting Direct Connect to access services of peered VPC is not allowed. 	
+	- No internet gateway needed 
+	- Peering connection is not encrypted, its private and isolated. However the inter region peeing connection are encrypted. 
+	- No transitive peering allowed A-B,B-C A to C is not allowed.  
+	- DNS query on inter region peering results in public ip addresses - route 53 private DNS is use to translate pubic ip to the instance private ip for communication. 
+	- ClassicLink is not supported for cross region peering/ IPv6 is not supported / Network Load balancer/ EFS / AWS PartnerLink 
+	-  
+ 
+
+
+
+
+
+
 
 
 
