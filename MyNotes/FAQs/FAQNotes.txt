@@ -1,41 +1,28 @@
 https://aws.amazon.com/faqs/
 
+Topics covered 
 AWS FAQ — S3
 AWS FAQ — RDS
 AWS FAQ - Route 53
 AWS FAQ - Lambda
+S3 - Glacier Deep Archive
 
+Target 25/10 
 AWS FAQ — VPC
 AWS FAQ — EC2
 AWS FAQ - EBS 
 AWS FAQ - ELB
 AWS FAQ - ALB
 
-
-
 AWS FAQ - API Gateway
-
-
-
-
-S3 - Glacier Deep Archive
 AWS FAQ - DynamoDB
 AWS FAQ - Aurora DB 
-
-AWS FAQ — VPC
-AWS FAQ — EC2
-AWS FAQ - EBS 
-AWS FAQ - ELB
-AWS FAQ - ALB 
 
 AWS FAQ - Auto Scaling
 AWS FAQ - CloudFront 
 AWS FAQ - IAM 
 AWS FAQ — SQS
 AWS FAQ - SNS
-
-
-
 
 
 What is ?
@@ -194,8 +181,54 @@ Peering Connection
 	- No transitive peering allowed A-B,B-C A to C is not allowed.  
 	- DNS query on inter region peering results in public ip addresses - route 53 private DNS is use to translate pubic ip to the instance private ip for communication. 
 	- ClassicLink is not supported for cross region peering/ IPv6 is not supported / Network Load balancer/ EFS / AWS PartnerLink 
-	-  
- 
+	
+Elastic Network Interface 
+- Can attach multiple ENI to one instance.
+- All the ENI attached to an instance should be from the same AZ , and same VPC 
+- Elastic IP addresses when not associated with a running instance it will be chargeable. 
+- eth 0 cannot be detached 
+
+Default VPC  10/25 09:42 AM 
+- Default VPC 172.31.0.0/16 , and subnet of /20 CIDR 
+- One can delete the default VPC , and then recreate it back but can't restore the deleted default VPC.  
+- for converting the Classic account to VPC account - delete all non-VPC resources then convert the classic account to VPC account. 
+
+Amazon VPC and EC2 - 10/25 09:59 Am
+- VPC span across multiple region 
+- Subnet confines to a single AZ can't span multiple AZ
+- data transfer changes between different subnet - if hosted in different availability zone yes there will be data transfer charges, within same AZ there will not be any charges.
+- DescribeInstance() this will show the EC2 instance details 
+- DescribeVolume () it will show the EBS volume details 
+- initial capacity of the Ec2 instance is 20 (soft limit) one can request for limit enhancements.
+- snapshot and AMI are regional artifacts can be used by all the VPCs within a same region. 
+
+
+VPC Traffic Monitoring  - 10/25 10:10
+- Traffic monitoring feature of the VPC allows mirroring of the traffic reaching to the ENI of Ec2 instance and then sending the mirrored traffic to a another EC2 instance or network-load-balancer(NLB) with UDP listener. The source and destination EC2 instance can be in the same VPC or in separate VPC.
+
+
+Security & Filtering - 10/25 10:41 AM
+- EC2 instance within VPC and communicate with an instance outside VPC through internee gateway. Traffic will leave the AWS network then reenter again for reaching to the destination EC2 instance. Ec2 instance that are connected to VPN gateway need to reach out to on-premises egress gateway to communicate over Internet in order to reach Ec2 instance created outside the VPC.  
+-   Ec2 to communicate to Ec2 of other region - through Internet Gateway, NAT gateway/instance, peering connections. 
+- EC2 instance within VPC can communicate to S3 using - S3 endpoint or through S3 gateway endpoint 
+
+Topology 
+- Multicasting and Brodcasting is not allowed in AWS VPC. 
+
+IP addressing - 11:14 AM
+- 1 CIDR block and up to 4 additional Secondary CIDR block can be added to VPC
+- 172.31.0.0/16 - default VPC CIDR block - default subnet size  /20
+- Size of the VPC between /16 (max) -to- /28(min)
+- EC2 instance can be assigned with multiple Elastic IP addresses - for each EIP there should be a corresponding private IP address. The EIP can only be use in the subnets where IGW is connected , NOT even with the subnet where NAT gateway/instance is connected. 
+
+
+Connectivity 
+- Private IP address can communicate to the Internet through NAT gateway/instance OR by connecting the VPC to an DX/VPN and then reaching out to the Internet through the on premises 
+through egress gateway 
+- Traffic remains within AWS network when two EC2 instance within same region communicate even over public IP addresses.
+- Traffic remains in the AWS network when two Ec2 instance within different region communicate over VPC peering. 
+- Site-To-Site works through IPSec VPN connection 
+
 
 
 
