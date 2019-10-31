@@ -1,0 +1,32 @@
+1>
+Your serverless architecture using AWS API Gateway, AWS Lambda, and AWS DynamoDB experienced a large increase in traffic to a sustained 400 requests per second, and dramatically increased in failure rates. Your requests, during normal operation, last 500 milliseconds on average. Your DynamoDB table did not exceed 50% of provisioned throughput, and Table primary keys are designed correctly. What is the most likely issue?
+
+a. Your API Gateway deployment is throttling your requests.
+b. Your AWS API Gateway Deployment is bottlenecking on request (de)serialization.
+c. You did not request a limit increase on concurrent Lambda function executions. (Refer link – AWS API Gateway by default throttles at 500 requests per second steady-state, and 1000 requests per second at spike. Lambda, by default, throttles at 100 concurrent requests for safety. At 500 milliseconds (half of a second) per request, you can expect to support 200 requests per second at 100 concurrency. This is less than the 400 requests per second your system now requires. Make a limit increase request via the AWS Support Console.)
+d. You used Consistent Read requests on DynamoDB and are experiencing semaphore lock.
+
+
+2>
+You need a solution to distribute traffic evenly across all of the containers for a task running on Amazon ECS. Your task definitions define dynamic host port mapping for your containers. What AWS feature provides this functionally?
+
+a. Application Load Balancers support dynamic host port mapping.(CORRECT)
+b. CloudFront custom origins support dynamic host port mapping.
+c. All Elastic Load Balancing instances support dynamic host port mapping. 
+d. Classic Load Balancers support dynamic host port mapping.
+
+3>
+Your security team requires each Amazon ECS task to have an IAM policy that limits the task’s privileges to only those required for its use of AWS services. How can you achieve this?
+a. Use IAM roles for Amazon ECS tasks to associate a specific IAM role with each ECS task definition (CORRECT)
+b. Use IAM roles on the Amazon ECS container instances to associate IAM role with each ECS task on that instance
+c. Connect to each running amazon ECS container instance and add discrete credentials
+d. Reboot each Amazon ECS task programmatically to generate new instance metadata for each task
+
+
+4>
+You are running a mobile media application and are considering API Gateway for the client entry point. What benefits would this provide? Choose 2 answers
+a. Caching API responses (CORRECT)
+b. IP blacklisting
+c. Intrusion prevention
+d. Load balancing
+e. Throttling traffic (CORRECT)
