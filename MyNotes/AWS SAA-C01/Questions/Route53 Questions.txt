@@ -1,0 +1,122 @@
+1>
+What does Amazon Route53 provide?
+a. A global Content Delivery Network.
+b. None of these.
+c. A scalable Domain Name System (CORRECT)
+d. An SSH endpoint for Amazon EC2.
+
+2>
+Does Amazon Route 53 support NS Records?
+a. Yes, it supports Name Service records.
+b. No
+c. It supports only MX records.
+d. Yes, it supports Name Server records. (CORRECT)
+
+3> 
+Does Route 53 support MX Records?
+a. Yes (CORRECT)
+b. It supports CNAME records, but not MX records.
+c. No
+c. Only Primary MX records. Secondary MX records are not supported.  (CORRECT)
+
+4>
+Which of the following statements are true about Amazon Route 53 resource records? Choose 2 answers
+a. An Alias record can map one DNS name to another Amazon Route 53 DNS name.
+b. A CNAME record can be created for your zone apex.
+c. An Amazon Route 53 CNAME record can point to any DNS record hosted anywhere.
+d. TTL can be set for an Alias record in Amazon Route 53.
+
+5>
+An Amazon Route 53 Alias record can point to any DNS record hosted anywhere.
+Which statements are true about Amazon Route 53? (Choose 2 answers)
+a. Amazon Route 53 is a region-level service
+b. You can register your domain name (CORRECT)
+c. Amazon Route 53 can perform health checks and failovers to a backup site in the even of the primary site failure(CORRECT)
+d. Amazon Route 53 only supports Latency-based routing
+
+
+6>
+A customer is hosting their company website on a cluster of web servers that are behind a public-facing load balancer. The customer also uses Amazon Route 53 to manage their public DNS. How should the customer configure the DNS zone apex record to point to the load balancer?
+
+a. Create an A record pointing to the IP address of the load balancer
+b. Create a CNAME record pointing to the load balancer DNS name.
+c. Create a CNAME record aliased to the load balancer DNS name.
+d. Create an A record aliased to the load balancer DNS name (CORRECT)
+
+
+7>
+A user has configured ELB with three instances. The user wants to achieve High Availability as well as redundancy with ELB. Which of the below mentioned AWS services helps the user achieve this for ELB?
+a. Route 53 (CORRECT)
+b. AWS Mechanical Turk
+c. Auto Scaling
+d. AWS EMR
+
+8>
+How can the domain’s zone apex for example “myzoneapexdomain com” be pointed towards an Elastic Load Balancer?
+a. By using an AAAA record
+b. By using an A record
+c. By using an Amazon Route 53 CNAME record
+d. By using an Amazon Route 53 Alias record (CORRECT)
+
+9>
+You need to create a simple, holistic check for your system’s general availability and uptime. Your system presents itself as an HTTP-speaking API. What is the simplest tool on AWS to achieve this with?
+a. Route53 Health Checks (Refer link)
+b. CloudWatch Health Checks
+c. AWS ELB Health Checks
+d. EC2 Health Checks
+
+10>
+Your organization’s corporate website must be available on www.acme.com and acme.com. How should you configure Amazon Route 53 to meet this requirement?
+a. Configure acme.com with an ALIAS record targeting the ELB. www.acme.com with an ALIAS record targeting the ELB. (CORRECT)
+b. Configure acme.com with an A record targeting the ELB. www.acme.com with a CNAME record targeting the acme.com record.
+c. Configure acme.com with a CNAME record targeting the ELB. www.acme.com with a CNAME record targeting the acme.com record.
+d. Configure acme.com using a second ALIAS record with the ELB target. www.acme.com using a PTR record with the acme.com record target.
+
+11>
+You have deployed a web application targeting a global audience across multiple AWS Regions under the domain name example.com. You decide to use Route 53 Latency-Based Routing to serve web requests to users from the region closest to the user. To provide business continuity in the event of server downtime you configure weighted record sets associated with two web servers in separate Availability Zones per region. During a DR test you notice that when you disable all web servers in one of the regions Route 53 does not automatically direct all users to the other region. What could be happening? (Choose 2 answers)
+a. Latency resource record sets cannot be used in combination with weighted resource record sets.
+b. You did not setup an http health check for one or more of the weighted resource record sets associated with the disabled web servers
+c. The value of the weight associated with the latency alias resource record set in the region with the disabled servers is higher than the weight for the other region.
+d. One of the two working web servers in the other region did not pass its HTTP health check
+e. You did not set “Evaluate Target Health” to “Yes” on the latency alias resource record set associated with example.com in the region where you disabled the servers. (CORRECT)
+
+>
+The compliance department within your multi-national organization requires that all data for your customers that reside in the European Union (EU) must not leave the EU and also data for customers that reside in the US must not leave the US without explicit authorization. What must you do to comply with this requirement for a web based profile management application running on EC2?
+a. Run EC2 instances in multiple AWS Availability Zones in single Region and leverage an Elastic Load Balancer with session stickiness to route traffic to the appropriate zone to create their profile (should be in 2 different regions – US and Europe)
+b. Run EC2 instances in multiple Regions and leverage Route 53’s Latency Based Routing capabilities to route traffic to the appropriate region to create their profile (Latency based routing policy would not guarantee the compliance requirement)
+c. Run EC2 instances in multiple Regions and leverage a third party data provider to determine if a user needs to be redirect to the appropriate region to create their profile
+d. Run EC2 instances in multiple AWS Availability Zones in a single Region and leverage a third party data provider to determine if a user needs to be redirect to the appropriate zone to create their profile(should be in 2 different regions – US and Europe)
+
+12>
+A US-based company is expanding their web presence into Europe. The company wants to extend their AWS infrastructure from Northern Virginia (us-east-1) into the Dublin (eu-west-1) region. Which of the following options would enable an equivalent experience for users on both continents?
+a. Use a public-facing load balancer per region to load-balance web traffic, and enable HTTP health checks.
+b. Use a public-facing load balancer per region to load-balance web traffic, and enable sticky sessions.
+c. Use Amazon Route 53, and apply a geolocation routing policy to distribute traffic across both regions (CORRECT)
+d. Use Amazon Route 53, and apply a weighted routing policy to distribute traffic across both regions.
+
+13>
+You have been asked to propose a multi-region deployment of a web-facing application where a controlled portion of your traffic is being processed by an alternate region. Which configuration would achieve that goal?
+a. Route 53 record sets with weighted routing policy (CORRECT)
+b. Route 53 record sets with latency based routing policy
+c. Auto Scaling with scheduled scaling actions set
+d. Elastic Load Balancing with health checks enabled
+
+14>
+Your company is moving towards tracking web page users with a small tracking image loaded on each page. Currently you are serving this image out of us-east, but are starting to get concerned about the time it takes to load the image for users on the west coast. What are the two best ways to speed up serving this image? Choose 2 answers
+
+a. Use Route 53’s Latency Based Routing and serve the image out of us-west-2 as well as us-east-1
+b. Serve the image out through CloudFront
+c. Serve the image out of S3 so that it isn’t being served of your web application tier
+d. Use EBS PIOPs to serve the image faster out of your EC2 instances
+
+15>
+Your API requires the ability to stay online during AWS regional failures. Your API does not store any state, it only aggregates data from other sources – you do not have a database. What is a simple but effective way to achieve this uptime goal?
+
+a. Use a CloudFront distribution to serve up your API. Even if the region your API is in goes down, the edge locations CloudFront uses will be fine.
+
+b. Use an ELB and a cross-zone ELB deployment to create redundancy across datacenters. Even if a region fails, the other AZ will stay online.
+
+c. Create a Route53 Weighted Round Robin record, and if one region goes down, have that region redirect to the other region.
+
+d. Create a Route53 Latency Based Routing Record with Failover and point it to two identical deployments of your stateless API in two different regions. Make sure both regions use Auto Scaling Groups behind ELBs. (Refer link) (CORRECT)
+
