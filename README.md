@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/kaustavdassoa/Java-Dev.git)
 
 ### AWS Docuemnts 
-- Advance AWS services 
+- Advance AWS services documentations 
 - AWS Reference Architecture
 - AWS White-papers 
 - Public Cloud Comparison documents 
@@ -16,6 +16,6 @@
 ### My Notes 
 - SAA-C01
     - Latest updated notes for SAA-C01 examination revision
-    - Topic wise question for SAA-C01
+    - Topic wise questions for SAA-C01
 
 
