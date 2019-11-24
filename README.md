@@ -2,7 +2,7 @@
 
 **About Me** 
 
-I have 13+ years of experience in designing and developing enterprise application, with proven track record of building teams from scratch and experienced in working as a Lead/Scrum Master for onshore/offshore development teams to meet the project deadlines and deliver quality products in a timely manner irrespective of high pressure or aggressive schedules.
+AWS Certified Solution Architect with 13+ years of experience in application designing, implementing and deploying scalable enterprise architectures across different domains with strong focused on Cloud Computing, Serverless Application Development, Application Containerization & Microservices, API Enablement, Process Modelling, Process Automation.
 
 Specialization : AWS Architecture | Application Modernization | Microservice | Serverless | Integration & API Enablement | Oracle Fusion Middleware Stack |
 
@@ -11,7 +11,8 @@ Specialization : AWS Architecture | Application Modernization | Microservice | S
 
 
 ### AWS Docuemnts 
-- Advance AWS services documentations 
+- AWS Service Documentations 
+- Gartner Reports
 - AWS Reference Architecture
 - AWS White-papers 
 - Public Cloud Comparison documents 
