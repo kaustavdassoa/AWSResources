@@ -1,0 +1,25 @@
+
+Important Link : 
+Youtube Playlist for Solution Architect Professional : https://www.youtube.com/playlist?list=PL_RVC-cMNyYTz8zlxq117O1bfji-knooI, 
+
+
+https://gist.github.com/leonardofed/bbf6459ad154ad5215d354f3825435dc
+
+
+CSA-Pro-Experience 
+https://www.linkedin.com/pulse/aws-certified-solutions-architect-professional-road-success-oliver
+https://acloud.guru/course/aws-certified-devops-engineer-professional/discuss/-KLJZO0tcO1Uk3fWa1J-/passed-the-devops-engineer-professional-exam-today
+https://www.linkedin.com/pulse/most-efficient-way-study-aws-certifications-professional-jady-liu/
+
+
+
+DEVOPS - Professional 
+Youtube Playlist for DevOps Professional : https://www.youtube.com/watch?v=aX54mhZbN58&list=PLlkukGgpsXytyCOSUHum0WwsVHsd7lKlH
+http://cantrill.io/certification/aws/2015/10/29/passing-the-aws-devops-engineer-professional-exam.html
+http://blog.error510.com/2016/03/28/aws-devops-engineer-exam-passed/
+http://www.ozaws.com/2015/10/30/aws-professional-devops-engineer-certification-tips/
+https://www.linkedin.com/pulse/my-experience-passing-aws-devops-engineer-rohini-gaonkar?trk=hp-feed-article-title-like
+
+CSA-Associate 
+http://cantrill.io/certification/aws/2016/03/27/how-to-pass-AWS-certifications.html
+https://acloud.guru/course/aws-certified-solutions-architect-associate/discuss/-KOcka8Cg2Q6UJ2uOHtX/
