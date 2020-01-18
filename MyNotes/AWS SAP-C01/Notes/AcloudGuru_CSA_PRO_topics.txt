@@ -1,0 +1,158 @@
+
+01 — ABOUT THE COURSE
+Hello Cloud Gurus!
+
+The AWS Certified Solutions Architect Professional (CSA-Pro) exam reaches far beyond testing in-depth knowledge of the AWS platform and delves into your ability to make decisions in ambiguous situations, wrestle with sub-optimal trade-offs, and tease-out minute details from paragraphs of text. All this is carefully designed to permit only those with true, multi-dimensional mastery of cloud architectures to call themselves Certified Solutions Architects at the Professional level.
+
+
+The CSA-Pro exam is for advanced practitioners, and so is this course. We assume that you already have several years of AWS architecture experience behind you and that you already hold the AWS CSA-A certification, if not all three Associate-level AWS certs. This course will not only help you slay the CSA-Pro dragon with confidence, but will also help you continue to develop professionally as a Solutions Architect.
+
+
+
+CHAPTER 2 
+1 Introduction
+1.1 Welcome
+1.2 Introduction
+1.3 About the Exam
+1.4 About This Course
+1.5 About the Labs
+
+CHAPTER 2 - Data Stores
+2. Introduction
+2.1 Concepts
+2.2 S3
+2.3 Glacier
+2.4 Elastic Block Storage
+2.5 Elastic File System
+2.6 Storage Gateway
+2.7 WorkDocs
+2.8 EC2 Databases
+2.9 RDS
+2.10 DynamoDB
+2.10 Redshift
+2.11 Neptune
+2.12 Elasticache
+2.13 Other Datastore Options
+2.14 Comparing DB Options
+2.15 Exam Tips
+2.16 Pro Tips
+2.17 Challenge 1
+2.18 Challenge 2
+2.19 Lab - Air Quality Analysis
+2.20 Data Stores Quiz
+
+CHAPTER 3 -Networking
+3.1 Introduction
+3.2 Concepts
+3.3 Network to VPC Connectivity
+3.4 VPC to VPC Connectivity
+3.5 Internet Gateways
+3.6 Routing
+3.7 Enhanced Networking
+3.8 Route 53
+3.9 CloudFront
+3.10 Elastic Load Balancers
+3.11 Exam Tips
+3.12 Pro Tips
+3.13 Challenge 1
+3.14 Challenge 2
+3.15 Lab - Network Mess
+3.16 Networking Quiz
+
+CHAPTER 4 -Security
+4.1 Introduction
+4.2 Concepts
+4.3 Multi-Account Management
+4.4 Network Controls and Security Groups
+4.5 AWS Directory Services
+4.6 Credentials and Access Management
+4.7 Encryption
+4.8 Distributed Denial of Service Attacks
+4.9 IDS and IPS
+4.9 Service Catalog
+4.10 Exam Tips
+4.11 Pro Tips
+4.12 Challenge 1
+4.13 Challenge 2
+4.14 Security Quiz
+
+CHAPTER 5 - Migrations
+5.1 Introduction
+5.2 Migration Strategies
+5.3 Cloud Adoption Framework
+5.4 Hybrid Architecture
+5.5 Migration Tools
+5.6 Network Migrations and Cutovers
+5.7 Snow Family
+5.8 Exam Tips
+5.9 Pro Tips
+5.10 Challenge 1
+5.11 Challenge 2
+5.12 Migrations Quiz
+
+CHAPTER 6 - Architecting to Scale
+6.1 Introduction
+6.2 Concepts
+6.3 Auto-Scaling
+6.4 Kinesis
+6.5 DynamoDB Scaling
+6.8 CloudFront Part 2
+6.9 SNS
+6.10 SQS
+6.11 Lambda, Serverless Application Model and EventBridge
+6.12 Simple Workflow Service
+6.13 Step Functions and Batch
+6.14 Elastic MapReduce
+6.15 Exam Tips
+6.16 Pro Tips
+6.17 Challenge 1
+6.18 Challenge 2
+6.19 Lab - Auto-Scale Experiment
+6.20 Architecting to Scale Quiz
+
+CHAPTER 7 Business Continuity
+7.1 Introduction
+7.2 Concepts
+7.3 AWS Continuum of HA
+7.4 Storage HA Options
+7.5 Compute HA Options
+7.6 Database HA Options
+7.7 Network HA Options
+7.8 Exam Tips
+7.9 Pro Tips
+7.10 Challenge 1
+7.11 Challenge 2
+7.12 Business Continuity Quiz
+
+CHAPTER 8 - Deployment and Operations Management
+8.1 Introduction
+8.2 Types of Deployments
+8.3 Continuous Integration and Deployment
+8.4 Elastic Beanstalk
+8.5 CloudFormation
+8.6 Elastic Container Service
+8.7 API Gateway
+8.8 Management Tools
+8.9 AWS System Manager
+8.10 Enterprise Apps
+8.11 Machine Learning Landscape
+8.12 Exam Tips
+8.13 Pro Tips
+8.14 Challenge 1
+8:15 Challenge 2
+8:16 Lab - Zero Downtime Deployments
+8:17 Deployment and Operations Management Quiz
+
+CHAPTER 9 - Cost Management
+9.1 Introduction
+9.2 Concepts
+9.3 Cost Optimization Strategies
+9.4 Tagging and Resource Groups
+9.5 Spot and Reserved Instances
+9.6 Cost Management Tools
+9.7 Exam Tips
+9.8 Pro Tips
+9.9 Challenge 1
+9.10 Challenge 2
+9.11 Cost Management Quiz
+

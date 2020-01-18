@@ -1,6 +1,21 @@
 
+https://aws.amazon.com/blogs/aws/
+
+Twitter Handel to be followed 
+https://twitter.com/QuinnyPig
+https://twitter.com/jeffbarr
+https://twitter.com/Werner
+
+
+
+
+https://linuxacademy.com/course/aws-certified-solutions-architect-professional-2018/
+
 Important Link : 
-Youtube Playlist for Solution Architect Professional : https://www.youtube.com/playlist?list=PL_RVC-cMNyYTz8zlxq117O1bfji-knooI, 
+Youtube Playlist for Solution Architect Professional : 
+https://www.youtube.com/playlist?list=PL_RVC-cMNyYTz8zlxq117O1bfji-knooI
+Youtube Playlist for AWS reinvent 2018 
+https://www.youtube.com/playlist?list=PL7_sJqzKZxKoowSkKTWVPndKeqvxuPHXJ
 
 
 https://gist.github.com/leonardofed/bbf6459ad154ad5215d354f3825435dc

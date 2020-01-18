@@ -1,0 +1,247 @@
+
+AWS Accounts
+
+Regions, AZs, and Edge Infrastructure
+High Availability, Fault Tolerance, and Disaster Recovery
+Disaster Recovery: RPO and RTO
+Data Persistence
+The OSI 7-Layer Networking Model
+
+Accounts
+
+Accounts Introduction
+AWS Identity Basics
+IAM Overview
+Identity and Resource Policies: Part 1
+Identity and Resource Policies: Part 2
+IAM Roles and Temporary Security Credentials: Part 1
+IAM Roles and Temporary Security Credentials: Part 2
+Cross-Account Access: Resource Permissions vs. Cross-Account Roles
+Accessing S3 with AWS IAM Roles
+
+Account Management
+
+AWS Accounts and AWS Organizations
+Service Control Policies
+AWS Account Limits
+AWS Support Tiers
+AWS Config
+AWS Service Catalog
+Using AWS Config and CloudFormation to Monitor Resources
+Cost and Cost Optimization
+Resource Billing Modes: On-Demand, Reserved, and Spot
+Advanced Identity in AWS
+Identity Federation
+IAM Permissions Boundaries
+Policy Evaluation Logic
+
+Networking in AWS: Virtual Private Clouds (VPCs)
+
+VPC Essentials
+VPC Basics
+AWS Resource Access Manager (RAM)
+VPC Routing
+Network Access Control Lists (NACLs)
+Security Groups (SGs)
+Public vs. Private Subnets, Internet Gateways, and IP Addressing: Part 1
+Public vs. Private Subnets, Internet Gateways, and IP Addressing: Part 2
+Egress-Only Gateways
+DNS in a VPC
+VPC Flow Logs
+Using Route 53 to Configure DNS in an AWS Environment
+Advanced and Hybrid VPC Networking
+Using VPC Endpoints
+Peering VPCs: Part 1
+Peering VPCs: Part 2
+AWS Site-to-Site VPN
+AWS Direct Connect Architecture
+AWS Transit Gateway
+Configuring Inter-Region VPC Peering in an AWS Environment
+
+Security
+
+Account and Service Security
+AWS Key Management Service (KMS): Part 1
+AWS Key Management Service (KMS): Part 2
+AWS CloudHSM
+AWS Certificate Manager (ACM)
+AWS Directory Service
+Network Security
+AWS WAF and Shield
+AWS GuardDuty
+
+Compute
+
+Elastic Compute Cloud (EC2)
+EC2 Concepts
+Creating and Using AMIs
+Virtualization and EC2 Instance Type: Deep Dive
+EC2 Storage and Snapshots: Part 1
+EC2 Storage and Snapshots: Part 2
+EC2 Instance Profiles and Roles
+HPC and Placement Groups
+Custom Logging to CloudWatch
+Using RAID Configurations on an AWS EBS Volume
+Using AWS EBS Snapshots to Restore Files to an AWS EBS Volume
+
+Containers
+
+Containers 101
+ECS Architecture
+ECS Security
+Deploying Docker Containers on Amazon EC2 Instances
+
+Serverless
+
+Serverless and Event-Driven Architectures
+Lambda Architecture: Part 1
+Lambda Architecture: Part 2
+Lambda Layers
+API Gateway
+Scaling and Resilience
+Scaling Architectures
+AWS Service Resilience
+Stateless Architectures
+Deciding between Spot and Reserved Instances
+Implementing Auto Scaling Groups (ASGs): Part 1
+Implementing Auto Scaling Groups (ASGs): Part 2
+Implementing Auto Scaling Groups (ASGs): Part 3
+Multi-AZ Implementations
+Elastic Load Balancers: Part 1 - Essentials
+Elastic Load Balancers: Part 2 - Classic Load Balancers
+Elastic Load Balancers: Part 3 - Application Load Balancers
+Elastic Load Balancers: Part 4 - Network Load Balancers
+Creating an Application Load Balancer from the AWS CLI
+Creating and Configuring a Network Load Balancer in AWS
+Utilizing Proxy Protocol and Nginx to Solve Problems through the AWS ELB
+
+CloudFront Essentials
+
+CloudFront Architecture: Part 1
+CloudFront Architecture: Part 2
+Creating and Working with Distributions
+Working with Custom Origins
+CloudFront and Security: Part 1
+CloudFront and Security: Part 2
+Optimizing Caching
+Lambda@Edge
+Logging, Reporting, and Monitoring
+Streaming Video with Amazon S3, CloudFront, and Elastic Transcoder
+Amazon Route 53 (R53)
+Route 53 Architecture
+Advanced Route 53 Concepts
+
+Storage
+
+Object Storage: Amazon Simple Storage Service (S3)
+Introduction
+S3 Architecture: Part 1
+S3 Architecture: Part 2
+S3 Storage Tiers, Intelligent-Tiering, and Lifecycle Policies
+Versioning and Locking
+Controlling Access to S3 Buckets
+Cross-Region Replication
+Object Encryption
+Optimizing S3 Performance
+Glacier Architecture
+Amazon Elastic File System (EFS)
+EFS Architecture: Part 1
+EFS Architecture: Part 2
+
+Amazon FSx
+
+FSx Architecture
+
+AWS Storage Gateway
+File Gateways vs. Volume Gateways vs. Tape Gateway
+
+Databases in AWS
+
+Databases Introduction
+EC2 Self-Managed Databases
+Database Data Models and Engines
+SQL Databases
+Amazon Relational Database Service (RDS): Part 1
+Amazon Relational Database Service (RDS): Part 2
+Amazon Aurora Architecture: Part 1
+Amazon Aurora Architecture: Part 2
+Aurora Global Database
+Aurora Serverless
+Amazon Athena
+NoSQL Databases
+DynamoDB Architecture: Part 1
+DynamoDB Architecture: Part 2
+Advanced DynamoDB: Part 1
+Advanced DynamoDB: Part 2
+Amazon Neptune
+Amazon Quantum Ledger Database (QLDB)
+Amazon DocumentDB (with MongoDB Compatibility)
+Processing DynamoDB Streams Using Lambda
+Amazon ElastiCache
+ElastiCache Architecture
+Analytics, IoT, and Streaming
+Amazon EMR
+MapReduce Essentials
+EMR Architecture: Part 1
+EMR Architecture: Part 2
+EMR Cost and Performance Optimization
+Amazon Kinesis
+What Is Kinesis?
+Data Firehose
+Data Analytics in Kinesis
+AWS Redshift
+Redshift Architecture
+Disaster Recovery in Redshift
+AWS IoT Platform
+AWS IoT Architecture
+Amazon QuickSight
+QuickSight Basics
+Search and Analytics Engines
+Elasticsearch
+
+
+Deployment and Operations
+
+Monitoring Your AWS Account
+AWS CloudWatch
+CloudWatch Logs
+AWS CloudTrail: Part 1
+AWS CloudTrail: Part 2
+Route 53 Logging
+S3 Logging
+AWS Systems Manager
+Systems Management with AWS Systems Manager
+Parameter Store
+AWS CloudFormation
+CloudFormation Overview
+Stack Updates
+Template Portability and Reuse
+Stack References and Nested Stacks
+Stack Roles
+StackSets
+Using CloudFormation for Disaster Recovery
+Custom Resources
+Using CloudFormation Templates to Create Complex Environments in AWS
+AWS Elastic Beanstalk
+Elastic Beanstalk Architecture
+AWS OpsWorks
+OpsWorks Architecture
+Migrations and Hybrid Architectures
+AWS Data Pipeline
+Data Pipeline Essentials
+AWS Migration Services
+
+Applying Disaster Recovery Techniques in AWS
+AWS Snow*
+Migrating Data to AWS with Snowball and Snowmobile
+
+Application Integration
+Simple Queue Service (SQS)
+SQS Architecture
+Processing Messages in AWS with Auto Scaling and SQS Message Queues
+Simple Notification Service (SNS)
+Using SNS within AWS Architectures
+Amazon MQ
+Amazon MQ Essentials
+Workflow Orchestration
+Step Functions and Simple Workflow Service
