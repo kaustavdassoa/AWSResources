@@ -19,8 +19,8 @@ Specialization : AWS Architecture | Application Modernization | Microservices | 
 
 ### My Artifacts 
 - CloudFormation Demo
-- Serverless-CI-CD 
-- EC2 Bootstraps scripts 
+- Serverless-CI-CD Demo
+- EC2 Bootstraps Demo  
 
 
 ### My Notes 
