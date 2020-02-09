@@ -28,7 +28,7 @@ Specialization : AWS Architecture | Application Modernization | Microservices | 
     - Topic wise questions for SAA-C01
 - **SAP-C01** (*AWS Professional Certification Pep Docs*)
     - Reference Notes (in-progress)
-    - Notes on AWS Whiteparer
+    - Notes on AWS Whitepaper
     - Notes on AWS reinvent Vidos 
     - Blog Collections on Advance topics
 
