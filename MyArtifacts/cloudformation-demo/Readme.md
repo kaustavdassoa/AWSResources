@@ -5,8 +5,6 @@
 2. Create a Keypair (pem base) to access EC2 instance - cfn-key-1 and cfn-key-2 
 
 
-
-
 ### Stack Overview 
 ##### Create New Stack : Create-ec2-instance-stack.yml
 1. Go to CloudFormation 
@@ -72,3 +70,9 @@ The intrinsic function ***Fn::FindInMap*** returns the value corresponding to ke
 ![](https://user-images.githubusercontent.com/5097017/74178912-68624c80-4c62-11ea-873f-f2d5599cc06a.png)
 EC2 AMI Value Validation 
 ![](https://user-images.githubusercontent.com/5097017/74179231-09510780-4c63-11ea-95f1-50ebbcc0fec5.png)
+
+Another Example : Using Mapping function with Prameters
+1. Select "Template is ready" & "Upload a template file"
+2. Select Environment parameter value as 'DEV'
+![](https://user-images.githubusercontent.com/5097017/74180312-4cac7580-4c65-11ea-886e-647b2ef6b29f.png)
+Based on the Environment parameter value selected, AMI value will be fetched from the mapping.
