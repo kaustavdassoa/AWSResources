@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: 2010-09-09
+# adding a mapping section for AMI value, based on user selection and the user login region AMI will be selected from the mapp
+Mappings:
+  MyRegionMap:
+    ap-south-1:
+      HVM64: ami-0217a85e28e625474 
+    us-east-2:
+       HVM64: ami-02ccb28830b645a41    
+
+
+Resources:
+  DevEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !FindInMap
+        - MyRegionMap
+        - !Ref 'AWS::Region'
+        - HVM64
+      InstanceType: t2.micro
+      KeyName: cnf-key-1
+      SecurityGroups:
+       - default

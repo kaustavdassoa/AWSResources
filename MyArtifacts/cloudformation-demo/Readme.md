@@ -1,4 +1,4 @@
-# CLOUD FORMATION HANDS-ON GUIDE 
+# CLOUD FORMATION HANDS-ON LAB 
 
 ### Prerequisite
 1. Create a new default VPC in the targeted region ap-south-1 (Asia Pacific - Mumbai ). AWS console > VPC > Your VPC > Create Default VPC
@@ -39,13 +39,36 @@ Note the change is just adding a new inbound rule to the existing security group
 5. Once the change set is created - it can be executed to apply the changes OR can be deleted on dis-approving the changes. 
 ![](https://user-images.githubusercontent.com/5097017/74097983-ad8a5f80-4b38-11ea-8a67-17e865536300.png)
 
-##### Parameters 
+### Parameters 
 * Parameters enable users to enter customer values (input values) to the cloudFormation stack. 
 * There can be upto 60 parameters within a single stack.
 * Parameter names can be alphanumeric, and should be unique within the stack. 
 * Parameter names are applied at the runtime - one can also define default value for each defined parameters. 
 
+**AWS Systems Manager Parameter Store** : AWS Systems Manager Parameter Store provides secure, hierarchical storage for configuration data management and secrets management. It can be used to store data such as passwords, database strings, and license codes as parameter values. It can store values as plaintext (unencrypted data) or ciphertext (encrypted data). You can then reference values by using the unique name that you specified when you created the parameter. Highly scalable, available, and durable, Parameter Store is backed by the AWS Cloud.
+*Note : One can refer parameter store within CloudFormation template using AWS::SSM::Paramter:Value<String>*
+
+
 1. Add a Paramter to the Stack and refer the new Parameter instead of hardcoded value. 
 2. Select "Template is ready" & "Upload a template file"
 3. Provide StackName and Select Parameter value
 ![](https://user-images.githubusercontent.com/5097017/74098238-d7915100-4b3b-11ea-8ea7-c32b75a9679b.png)
+
+
+### Mapping Values
+The intrinsic function ***Fn::FindInMap*** returns the value corresponding to keys in a two-level map that is declared in the Mappings section.
+
+***Pseudo parameters*** are parameters that are predefined by AWS CloudFormation. One dont need to declare them in the CloudFormation template, they can be referred same way as other parameters are referred withing the template. E.g. `AWS::Region`, `AWS::AccountId`, `AWS::NoValue`,`AWS::Partition`
+
+
+`AWS::NoValue` removes the corresponding resource property when specified as a return value in the `Fn::If` intrinsic function.
+
+`AWS:Partition` Returns the partition that the resource is in. For standard AWS regions, the partition is aws. For resources in other partitions, the partition is aws-partitionname. For example, the partition for resources in the China (Beijing and Ningxia) region is aws-cn and the partition for resources in the AWS GovCloud (US-West) region is aws-us-gov.
+
+1. Select "Template is ready" & "Upload a template file"
+2. Exectue Stack
+3. Wait for the stack resource (EC2-Instance) to be created.
+4. Open Resource tab > click on the resource physical id > Validate EC2 instance is created based on the provided AMI ID.
+![](https://user-images.githubusercontent.com/5097017/74178912-68624c80-4c62-11ea-873f-f2d5599cc06a.png)
+EC2 AMI Value Validation 
+![](https://user-images.githubusercontent.com/5097017/74179231-09510780-4c63-11ea-95f1-50ebbcc0fec5.png)
