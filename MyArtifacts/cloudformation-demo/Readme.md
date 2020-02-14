@@ -76,3 +76,28 @@ Another Example : Using Mapping function with Prameters
 2. Select Environment parameter value as 'DEV'
 ![](https://user-images.githubusercontent.com/5097017/74180312-4cac7580-4c65-11ea-886e-647b2ef6b29f.png)
 Based on the Environment parameter value selected, AMI value will be fetched from the mapping.
+
+### Condition 
+Conditions are used with create statement, when the condition is satisfied the resource gets created.
+Note : During stack update one can't update conditions. Conditions can ONLY be updated when the respective resources are included in the change - like the resource is added, modified , deleted. Following six (6) intrinsic functions can be used to define stacks.
+`Fn::And Fn::Equals Fn::If Fn::Not Fn:Or`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

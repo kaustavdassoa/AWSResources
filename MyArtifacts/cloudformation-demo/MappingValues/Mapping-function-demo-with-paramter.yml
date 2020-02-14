@@ -9,7 +9,7 @@ Mappings:
 
 Parameters:
   EnviromentName:
-    Description: Select Enviroment
+    Description: Select Environment
     Type: String
     Default : DEV
     AllowedValues:
