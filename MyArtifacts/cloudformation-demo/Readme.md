@@ -82,6 +82,24 @@ Conditions are used with create statement, when the condition is satisfied the r
 Note : During stack update one can't update conditions. Conditions can ONLY be updated when the respective resources are included in the change - like the resource is added, modified , deleted. Following six (6) intrinsic functions can be used to define stacks.
 `Fn::And Fn::Equals Fn::If Fn::Not Fn:Or`
 
+`Conditions:`
+  `IfEnviromentNameIsPROD: !Equals [!Ref EnviromentName, PROD]`
+
+### Output 
+Output section declare output values that we can 
+- Import into another stack (to create a cross stack reference)
+- In case of the nested stack, the output of the nested stack use in the root stack.
+- Display the output value in the cloudFormation console. 
+
+Note : Maximum of 6 (sixty) output values is allowed.
+#### Output-Export 
+- Export section of the CloudFormation output contains resource output for the stack reference. Other stacks within the same region can use intrinsic function `fn:ImportValue` to import values. 
+- For Each AWS account, the export name should be unique within a region. 
+- Cross Stack reference can't be created accross regions, it should be within the same region. 
+
+
+
+
 
 
 
