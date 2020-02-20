@@ -108,15 +108,52 @@ Output section declare output values that we can
 - Import into another stack (to create a cross stack reference)
 - In case of the nested stack, the output of the nested stack use in the root stack.
 - Display the output value in the cloudFormation console. 
-- One can't delete the stack if its been refered by another stack.
+- One can't delete the stack if its been referred by another stack.
+- One can have up to 60 output variable declare within a stack.
 
-Note : Maximum of 6 (sixty) output values is allowed.
-### Export 
+Syntax 
+```yml
+Outputs
+    <LogicalIDName>
+    Description : <Description about the output>
+    Value: <the value that it need to associated to the output value>
+    Export:
+        Name: <Reference name of the export>
+
+
+Example ~ 
+Outputs:
+    InstanceID
+        Description: Instance ID 
+        Value: !Ref MyVMInstance
+        Export:
+            Name: !Sub {"{AWS::StackName}"-InstanceId}
+    AvailabilityZone
+        Description : Instance availability Zone
+        Value: !GetAtt InstanceID.AvailabilityZone
+        Export:
+            Name: !Sub {"{AWS::StackName}"-AvailabilityZone}
+```
+##### CloudFormation Template Syntax 
+![](https://user-images.githubusercontent.com/5097017/74888401-d960dd00-53a3-11ea-89da-eec7d7a6e5a9.png)
+
+##### EC2 Console : Instance ID  
+![](https://user-images.githubusercontent.com/5097017/74888474-0c0ad580-53a4-11ea-9722-9e8c93e8e3db.png)
+
+##### CloudFormation Outputs : Instance ID  
+![](https://user-images.githubusercontent.com/5097017/74888318-a61e4e00-53a3-11ea-9302-19d4699a178b.png)
+
+
+### Export (optional)
 - Export section of the CloudFormation output contains resource output for the stack reference. Other stacks within the same region can use intrinsic function `fn:ImportValue` to import values. 
 - For Each AWS account, the export name should be unique within a region. 
-- Cross Stack reference can't be created accross regions, it should be within the same region. 
+- Cross Stack reference can't be created across regions, it should be within the same region. 
 
+##### CloudFormation Template Syntax with Export
+![](https://user-images.githubusercontent.com/5097017/74891368-ddddc380-53ac-11ea-9ee9-55634eaded8e.png)
 
+##### CloudFormation Outputs with Export
+![](https://user-images.githubusercontent.com/5097017/74891413-f9e16500-53ac-11ea-947b-4f36bb5e3d98.png)
 
 
 

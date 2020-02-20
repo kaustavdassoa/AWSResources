@@ -60,4 +60,15 @@ Resources:
           CidrIp: 0.0.0.0/0   
 
 
-      
+#Output section 
+Outputs:
+  InstanceID:
+    Description: New Instance ID 
+    Value: !Ref DevEC2Instance
+  #EC2 Attribute   
+  AvailabilityZone:
+    Description: Availability Zone Name  
+    Value: !GetAtt DevEC2Instance.AvailabilityZone
+    #Exports
+    Export:
+      Name: !Sub ${AWS::StackName}-InstanceAZ   

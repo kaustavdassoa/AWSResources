@@ -60,4 +60,8 @@ Resources:
           CidrIp: 0.0.0.0/0   
 
 
-      
+#Output section 
+Outputs:
+  InstanceID:
+    Description: New Instance ID 
+    Value: !Ref DevEC2Instance
