@@ -155,13 +155,34 @@ Outputs:
 ##### CloudFormation Outputs with Export
 ![](https://user-images.githubusercontent.com/5097017/74891413-f9e16500-53ac-11ea-947b-4f36bb5e3d98.png)
 
+##### CloudFormation Template Syntax with Import
+![](https://user-images.githubusercontent.com/5097017/75082600-68076280-553a-11ea-960a-9d316de98744.png)
 
 
+##### CloudFormation Import value reference 
+![](https://user-images.githubusercontent.com/5097017/75082670-bb79b080-553a-11ea-979b-8a181c75ccc3.png)
+
+#### Note : If stack is referred by another stack it cannot be deleted or modified.  
+![](https://user-images.githubusercontent.com/5097017/75082742-24612880-553b-11ea-97ec-84e53729bb48.png)
 
 
+###### Note:Both the below options will return same value - just two different way of representation.
+```
+#Option-1
+Export:
+Name: !Sub ${AWS::StackName}-SecurityGroupTCP
 
+#Option-2
+Export:
+Name: !Join ["-", [!Ref 'AWS::StackName', SecurityGroupTCP]]
+```
 
+### MetaData
 
+There are three types of metadata key.
+- AWS::CloudFormation::Designer  Auto generated when resources are drag and drop to the Cloud Formation template. 
+- AWS::CloudFormation::Interface Use for parameter grouping 
+- AWS::CloudFormation::Init Use for application installation and configuration on EC2 compute 
 
 
 

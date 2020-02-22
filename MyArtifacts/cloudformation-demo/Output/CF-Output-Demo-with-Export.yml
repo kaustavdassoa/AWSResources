@@ -65,10 +65,31 @@ Outputs:
   InstanceID:
     Description: New Instance ID 
     Value: !Ref DevEC2Instance
-  #EC2 Attribute   
+  #EC2 Attribute : AvailabilityZone
   AvailabilityZone:
     Description: Availability Zone Name  
     Value: !GetAtt DevEC2Instance.AvailabilityZone
-    #Exports
+    #Export EC2 Attribute : AvailabilityZone to ${AWS::StackName}-InstanceAZ   
     Export:
       Name: !Sub ${AWS::StackName}-InstanceAZ   
+  #EC2 Attribute : PublicDnsName 
+  DNSName:
+    Description :  Public DNS Name
+    Value: !GetAtt DevEC2Instance.PublicDnsName
+    #Export EC2 Attribute : PublicDnsName to ${AWS::StackName}-InstanceDNS     
+    Export:
+      Name: !Sub ${AWS::StackName}-InstanceDNS   
+  #EC2 Attribute : PublicIp
+  PublicIP:
+    Description :  Public Public Ip Address
+    Value: !GetAtt DevEC2Instance.PublicIp     
+    #Export EC2 Attribute : PublicIp to ${AWS::StackName}-InstanceIp     
+    Export:
+      Name: !Sub ${AWS::StackName}-InstanceIp
+  TCPSecurityGroup:
+    Description :  TCP Security Group
+    Value: !Ref TCPSecurityGroup
+    #Export Security Group : TCPSecurityGroup   
+    Export:
+      Name: !Sub ${AWS::StackName}-SecurityGroupTCP
+      #Name: !Join ["-", [!Ref 'AWS::StackName', SecurityGroupTCP]]
