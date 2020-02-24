@@ -23,7 +23,7 @@ Resources:
           securitygroup=$(curl http://169.254.169.254/latest/meta-data/security-groups/)
           instanceid=$(curl http://169.254.169.254/latest/meta-data/instance-id/)
           availabilityzone=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
-          echo '<html><center><h1>HOSTED FROM AMAZON EC2 INSTANCE </h1><center><body><iframe src='http://www.youtube.com/embed/_Yn7QAS5Wpw' width='560' height='315' frameborder='0' allowfullscreen></iframe></br><p1> This page is hosted using AWS EC2 instance </p1> <h3>EC2 Instance Info</h3><center><body><table><tr><td><b>instance-id</b></td><td>'$instanceid'</td><td><b>availability-zone</b></td><td>'$availabilityzone'</td></td><tr><td><b>security-group</b></td><td>'$securitygroup'</td></tr></table></body></html>' > index.html
+          echo '<html><center><h1>HOSTED FROM AMAZON EC2 INSTANCE </h1><center><body><iframe src='http://www.youtube.com/embed/_Yn7QAS5Wpw' width='560' height='315' frameborder='0' allowfullscreen></iframe></br><p1> This page is hosted using AWS EC2 instance </p1> <h3>EC2 Instance Info</h3><center><body><table><tr><td><b>instance-id</b></td><td>'$instanceid'</td><td><b>availability-zone</b></td><td>'$availabilityzone'</td></td><tr><td><b>security-group</b></td><td>'$securitygroup'</td></tr><tr><td><b>Stack Name</b></td><td>${AWS::StackName}</td></tr></table></body></html>' > index.html
           echo "successfully completed" > /home/ec2-user/inital.log
       
 
