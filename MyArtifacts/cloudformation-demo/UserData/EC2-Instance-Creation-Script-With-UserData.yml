@@ -1,0 +1,54 @@
+Resources:
+  DevEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-0d9462a653c34dab7
+      InstanceType: t2.micro
+      KeyName: ec2-key-pair-001
+      SecurityGroups:
+       - !Ref SSHSecurityGroup # Using Ref Intrinsic Function one can refer another resource
+      UserData: 
+        Fn::Base64: 
+          !Sub  | 
+          #!/bin/bash -xe
+          sudo su
+          date > /home/ec2-user/starttime.log
+          echo "creation in progress ${AWS::StackName}" > /home/ec2-user/inital.log
+          yum update -y 
+          yum install httpd -y
+          service httpd start
+          chkconfig httpd on
+          echo "update completed" > /home/ec2-user/inital.log
+          cd /var/www/html
+          securitygroup=$(curl http://169.254.169.254/latest/meta-data/security-groups/)
+          instanceid=$(curl http://169.254.169.254/latest/meta-data/instance-id/)
+          availabilityzone=$(curl http://169.254.169.254/latest/meta-data/placement/availability-zone)
+          echo '<html><center><h1>HOSTED FROM AMAZON EC2 INSTANCE </h1><center><body><iframe src='http://www.youtube.com/embed/_Yn7QAS5Wpw' width='560' height='315' frameborder='0' allowfullscreen></iframe></br><p1> This page is hosted using AWS EC2 instance </p1> <h3>EC2 Instance Info</h3><center><body><table><tr><td><b>instance-id</b></td><td>'$instanceid'</td><td><b>availability-zone</b></td><td>'$availabilityzone'</td></td><tr><td><b>security-group</b></td><td>'$securitygroup'</td></tr></table></body></html>' > index.html
+          echo "successfully completed" > /home/ec2-user/inital.log
+      
+
+  SSHSecurityGroup: 
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Allowing SSH connetivity
+      SecurityGroupIngress: 
+      - IpProtocol: tcp
+        FromPort: '443'
+        ToPort: '443'
+        CidrIp: 0.0.0.0/0  # HTTP access 
+      SecurityGroupIngress: 
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0  # HTTPS access  
+
+Outputs:
+  InstanceId:
+    Description: InstanceId of the newly created EC2 instance
+    Value: !Ref DevEC2Instance
+  PublicDNS:
+    Description: Public DNSName of the newly created EC2 instance
+    Value: !GetAtt DevEC2Instance.PublicDnsName
+  APPlicationURL:
+    Description: Hosted Application URL
+    Value: !Join ["", ["http://", !GetAtt DevEC2Instance.PublicDnsName,"/index.html" ]]
