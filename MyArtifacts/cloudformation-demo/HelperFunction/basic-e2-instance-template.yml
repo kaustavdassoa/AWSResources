@@ -1,0 +1,102 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Helper Script Demo
+
+Parameters:
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+
+Resources:
+  DevEC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Metadata:
+      Comment: Basic ec2 instance 
+      AWS::CloudFormation::Init
+      config:
+        packages:
+          yum:
+            java-1.8.0-openjdk.x86_64: []  # JRE Install
+            java-1.8.0-openjdk-devel: []   # JDK Install
+            tomcat8: []  #tomcat  install
+        groups:
+          groupone: {}  # Groups without defining IDs
+          grouptwo: 
+            gid : "501"  # Groups with IDs
+        users:
+          user1:
+            groups:
+              - groupone
+              - grouptwo
+            uid: "501"
+            homeDir: "tmp"
+        sources:
+          /tmp: "https://cloudformation-demo-resource-25022020.s3.ap-south-1.amazonaws.com/HelloWorld.war"
+        files:
+          "/etc/cfn/cfn-hup.conf"
+          content: !Sub |
+            [main]
+            stack=${AWS::StackID}
+            region=${AWS::Region}
+            interval=7
+          mode: "000400"
+          owner: "root"
+          group: "root"
+          "/etc/cfn/hooks.d/cfn-auto-reloader.conf"
+          content: !Sub |
+            [cfn-auto-reloader-hook]
+            triggers=post.update
+            path=Resources.DevEC2Instance.Metadata.AWS::CloudFormation::Init
+            action=/opt/aws/bin/cfn-init -v --stack ${AWS:StackName} --resource DevEC2Instance --region ${AWS::Region}
+          mode: "000400"
+          owner: "root"
+          group: "root"  
+        commands:
+          test1:
+            command: "chmod 755 HelloWorld.war" # provide permission
+            cwd: "/tmp"
+          test2:
+            command: "sudo yum -y erase java-1.7.0-openjdk.x86_64" # erase 1.7.0 java version
+            cwd: "~" # root
+          test3: 
+            command: "rm -rf HelloWorld.*" # delete older version of the war file
+            cwd: "/var/lib/tomcat8/webapps"
+          test4:
+            command: "cp HelloWorld.war /var/lib/tomcat8/webapps" # copy the war file from tmp to tomcat webapps
+            cwd: "/tmp"      
+        services:
+    Properties:
+      ImageId: ami-0d9462a653c34dab7
+      InstanceType: t2.micro
+      KeyName: !Ref KeyName
+      SecurityGroups:
+       - !Ref HTTPHTTPSSecurityGroup # Refer HTTPHTTPSSecurityGroup
+
+  # Packages ONLY supports - apt, mis, python , rpm, rubygemes, yum installers.
+  # Groups is use to create Lunix/Unix groups & assign IDs to then - this is NOT relevent for windows Image 
+  # Sources section one can download a zip gzip and tar files from a source location (s3)
+  # File section is to create new file on the instance (ec2) | alpabatical order the files gets created with the content define under content section
+  # Command section contains the cmmnand that needs to be executed on the EC2 instance.
+
+  HTTPHTTPSSecurityGroup: 
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Allowing SSH connetivity
+      SecurityGroupIngress: 
+      - IpProtocol: tcp
+        FromPort: '443'
+        ToPort: '443'
+        CidrIp: 0.0.0.0/0  # HTTPS access 
+      - IpProtocol: tcp
+        FromPort: '80'
+        ToPort: '80'
+        CidrIp: 0.0.0.0/0  # HTTP access  
+
+Outputs:
+  InstanceId:
+    Description: InstanceId of the newly created EC2 instance
+    Value: !Ref DevEC2Instance
+  PublicDNS:
+    Description: Public DNSName of the newly created EC2 instance
+    Value: !GetAtt DevEC2Instance.PublicDnsName
+  APPlicationURL:
+    Description: Hosted Application URL
+    Value: !Join ["", ["http://", !GetAtt DevEC2Instance.PublicDnsName,"/index.html" ]]
