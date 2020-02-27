@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Helper Script Demo
+Description: CloudFormation Stack to create a Tomcat 8 enviroment with EC2 instance 
 
 Parameters:
   KeyName:

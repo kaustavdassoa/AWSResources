@@ -105,9 +105,18 @@ cfn-signal --success|-s signal.to.send \
 ```
 
 
+Creation Policy :
 
 
+##### How to Debug CloudFormation Template
+###### Login into EC2 instance and view /var/log/cfn-init.log
 
+![](https://user-images.githubusercontent.com/5097017/75424327-6be61b00-5966-11ea-9ed4-00b994ea6610.png)
+
+###### Sending Logs to CloudWatch & view it from the AWS management console 
+With the advent of Amazon CloudWatch Logs, it is now possible to access the application bootstrapping logs (or any other logs from an EC2 instance) right inside the AWS Management Console.
+
+<a href="https://aws.amazon.com/blogs/devops/view-cloudformation-logs-in-the-console/" target="_blank">Refer this link for more details</a>
 
 
 ##### Steps to create a Tomcat WAR file for testing Packages 
