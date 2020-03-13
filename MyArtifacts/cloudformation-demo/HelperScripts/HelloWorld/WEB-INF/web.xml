@@ -1,0 +1,5 @@
+<web-app id="simple" version="2.4">
+  <welcome-file-list>
+    <welcome-file>HelloWorld.html</welcome-file>
+  </welcome-file-list>
+</web-app>
