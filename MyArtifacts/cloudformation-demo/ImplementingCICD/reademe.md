@@ -20,7 +20,7 @@ Instance profile(s) are required for attaching IAM policies/roles to EC2 instanc
 Note : When CloudFormation template contains a IAM Resource creation steps, one need to provide additional concent while creating the Stack.
 ![](https://user-images.githubusercontent.com/5097017/76581936-fac46d00-64fa-11ea-8786-f1b5da0846d1.png)
 
-**Task 3: Create a new repository CodeCommit > Repositories.** 
+**Task 3: Create a new repository CodeCommit Repositories.** 
 ![image](https://user-images.githubusercontent.com/5097017/76603369-d1273800-6532-11ea-99fb-ff3ec7ce63cd.png)
 
 1. Create CodeCommit repository 
@@ -37,5 +37,40 @@ git remote -v
 git push -u origin master 
 # when promoted provide the downloaded credentials 
 ```
+**Note:** AWS CodeCommit Pricing : Anyone with an AWS account can get started with AWS CodeCommit for free. Your account gets 5 active users per month for free (within limits), after which you pay $1.00 per additional active user per month. There are no upfront fees or commitments.
+![image](https://user-images.githubusercontent.com/5097017/76618526-c24e7e80-654e-11ea-96fe-e605ffc5712f.png)
+
 4. verify the code by login into codeDeploy 
 ![image](https://user-images.githubusercontent.com/5097017/76606772-dedfbc00-6538-11ea-9323-c4c2180dc4c0.png)
+
+
+**Task 3: Add buildspec.yml for the Porject.** 
+Sample buildspec.yml
+```
+version: 0.2
+phases:
+  install: 
+    commands:
+     - echo Nothing to do in the install phase..
+  pre_build:
+    commands:
+      - echo Nothing to do in the pre build phase...
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install  # THIS IS THE MAIN BUILD COMMAND 
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - 'target/ccdemo.war'
+```
+
+
+**Task 4: Create a new CodeBuild Porject.** 
+Code build project can be use to build the checked-in code. 
+
+
+**Task 5: Add Notification for CodeBuild Phase Change & State change events.** 
+CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & State change events.<a href="https://docs.aws.amazon.com/codebuild/latest/userguide/sample-build-notifications.html" target="_blank">Refer Link for more details</a>
