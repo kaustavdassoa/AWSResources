@@ -5,27 +5,13 @@
 2. Monitor Deployment using AWS CloudWatch , AWS SimpleNotificationService, AWS X-Ray
 3. Develop AWS CloudFormation templates for #1 & #2
 
+## Prerequisite
+1. AWS free tire account 
+2. A Sample Spingboot java project 
+3. Lot of Patience. :-)
 
-## Steps
-#### Task 1: Create a cloudFormation template for Prod and Staging Ec2-Instance - with CloudDeploy agent Installed.
-
-Note: To install code-deploy agent on the EC2 instance refer <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html" target="_blank">this</a> link.
-
-Code snippet for installing Asia Pacific (Mumbai) region the install URL is 
-```unix
-cd /home/ec2-user
-wget https://aws-codedeploy-ap-south-1.ap-south-1.amazonaws.com/latest/install
-chmod +x ./install
-sudo ./install auto
-```
-
-#### Task 2: Create InstanceProfile and add it to EC2 instaces.#### 
-Instance profile(s) are required for attaching IAM policies/roles to EC2 instances for accessing other AWS resources like S3,codeDeploy etc. 
-
-Note : When CloudFormation template contains a IAM Resource creation steps, one need to provide additional concent while creating the Stack.
-![](https://user-images.githubusercontent.com/5097017/76581936-fac46d00-64fa-11ea-8786-f1b5da0846d1.png)
-
-**Task 3: Create a new repository CodeCommit Repositories.** 
+## Steps Performed 
+### Task 1: Create a new repository CodeCommit Repositories.** 
 ![image](https://user-images.githubusercontent.com/5097017/76603369-d1273800-6532-11ea-99fb-ff3ec7ce63cd.png)
 
 1. Create CodeCommit repository 
@@ -44,13 +30,12 @@ git push -u origin master
 ```
 **Note:** <u>AWS CodeCommit Pricing :</u> Anyone with an AWS account can get started with AWS CodeCommit for free. Your account gets 5 active users per month for free (within limits), after which you pay $1.00 per additional active user per month. There are no upfront fees or commitments.
 ![image](https://user-images.githubusercontent.com/5097017/76618526-c24e7e80-654e-11ea-96fe-e605ffc5712f.png)
-
 4. Verify the code by login into codeCommit management console 
 ![image](https://user-images.githubusercontent.com/5097017/76675792-536f3500-65e3-11ea-8c71-2cbe67cbe554.png)
 
-Note : buildspec.yml file should be directly under the repository location, thus its advisable to have separate repository for separate project. 
 
-**Task 3: Add buildspec.yml for the Porject.** 
+
+### Task 2: Add buildspec.yml for the Porject.** 
 Sample buildspec.yml for installting springboot project using maven build tool ```mvn install```
 
 ```yml
@@ -73,22 +58,20 @@ artifacts:
   files:
     - 'target/ccdemo.war'
 ```
+Note : buildspec.yml file should be directly under the repository location, thus its advisable to have separate repository for separate project. 
 
-
-#### Task 4: Create a new CodeBuild Porject.#### 
+#### Task 3: Create a new CodeBuild Porject.#### 
 Code build project can be use to build the checked-in code. 
 
 
-#### Task 5: Add Notification for CodeBuild Phase Change & State change events.####  
+#### Task 4: Add Notification for CodeBuild Phase Change & State change events.
 CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & State change events.<a href="https://docs.aws.amazon.com/codebuild/latest/userguide/sample-build-notifications.html" target="_blank">Refer Link for more details</a>
 
 
-#### Task 6: Create AWS CodeDeploy project.####
+#### Task 5: Create AWS CodeDeploy project.####
+**Note:CodeDeploy pricing** For CodeDeploy on EC2/Lambda there is no additional charge for code deployments to Amazon EC2 or AWS Lambda through AWS CodeDeploy.For CodeDeploy On-Premises, one may have to pay $0.02 per on-premises instance update using AWS CodeDeploy. There are no minimum fees and no upfront commitments. For example, a deployment to three instances equals three instance updates. One will only be charged if CodeDeploy performs an update to an instance and will not be charged for any instances skipped during the deployment.
 
-**Note:CodeDeploy pricing**
-<u>For CodeDeploy on EC2/Lambda:</u> There is no additional charge for code deployments to Amazon EC2 or AWS Lambda through AWS CodeDeploy.For CodeDeploy On-Premises, one may have to pay $0.02 per on-premises instance update using AWS CodeDeploy. There are no minimum fees and no upfront commitments. For example, a deployment to three instances equals three instance updates. One will only be charged if CodeDeploy performs an update to an instance and will not be charged for any instances skipped during the deployment.
-
-**AWS CodeDeploy can deploy artifacts to **
+**AWS CodeDeploy can deploy artifacts to**
 1. EC2 instance 
 2. EC2 autoscaling 
 3. AWS Lambda 
@@ -103,3 +86,43 @@ CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & Sta
 6. Scripts 
 7. Media Files 
 
+****
+Before starting to create codeDeploy project create two IAM service roles for codeDeploy service to access EC2 instance and S3 bucket. 
+![image](https://user-images.githubusercontent.com/5097017/76678593-59730f00-65ff-11ea-943f-2b60804bc744.png)
+
+Create a new EC2 instance, add the following userdata & a security group with ingress PORT 8080/22 open. TAG the EC2 instance with "Environment-Name = DEV"
+```shell
+  #!/bin/bash -xe
+  sudo yum update -y
+  sudo yum install -y ruby > /tmp/ruby.install.log
+  sudo yum install -y wget > /tmp/wget.install.log
+  sudo yum erase -y  java-1.7.0-openjdk.x86_64 > /tmp/jdk.unstall.log
+  sudo yum install -y  java-1.8.0-openjdk.x86_64 > /tmp/jre.install.log
+  sudo yum install -y  java-1.8.0-openjdk-devel > /tmp/jdk.install.log
+  sudo yum install -y  tomcat > /tmp/tomcat.install.log
+  cd /home/ec2-user
+  wget https://aws-codedeploy-ap-south-1.s3.ap-south-1.amazonaws.com/latest/install
+  chmod +x ./install
+  sudo sudo ./install auto
+```
+
+Create a AppSpec.yml and checkin with the code along with its associated scripts - NOTE: buildspecs.yml file need to be altered to ensure that appspecs.yml & script folder is also included in the artifact section. 
+
+## For CloudFoundation CI/CD template 
+#### Task : Create a cloudFormation template for Prod and Staging Ec2-Instance - with CloudDeploy agent Installed.
+
+Note: To install code-deploy agent on the EC2 instance refer <a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html" target="_blank">this</a> link.
+
+Code snippet for installing Asia Pacific (Mumbai) region the install URL is 
+```unix
+cd /home/ec2-user
+wget https://aws-codedeploy-ap-south-1.ap-south-1.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+```
+
+#### Task : Create InstanceProfile and add it to EC2 instaces.#### 
+Instance profile(s) are required for attaching IAM policies/roles to EC2 instances for accessing other AWS resources like S3,codeDeploy etc. 
+
+Note : When CloudFormation template contains a IAM Resource creation steps, one need to provide additional concent while creating the Stack.
+![](https://user-images.githubusercontent.com/5097017/76581936-fac46d00-64fa-11ea-8786-f1b5da0846d1.png)
