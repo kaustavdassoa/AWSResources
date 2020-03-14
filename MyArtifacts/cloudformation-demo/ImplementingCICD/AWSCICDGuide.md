@@ -1,15 +1,13 @@
 # CI CD using AWS Services 
-
 ## Objective
 * To demonstrate the CI/CD capabilities of AWS CodePipeline leveraging AWS CodeCommit , AWS CodeBuild , AWS CodeDeploy. 
 * Monitor Deployment using AWS CloudWatch , AWS SNS (SimpleNotificationService), builds Logs etc.
 * Develop AWS CloudFormation templates for CI/CD pipeline.
 
-
 ## Prerequisite
 1. AWS free tire account 
 2. A Sample Spingboot java project 
-3. Lot of Patience. :-)
+3. Lots of Patience.
 
 ## Implementing CI/CD pipeline using AWS console
 ### Task 1: Create a new repository CodeCommit Repositories.
@@ -87,7 +85,7 @@ CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & Sta
 6. Scripts 
 7. Media Files 
 
-#### Task 5.1 Before starting to create codeDeploy project create two IAM service roles for codeDeploy service to access EC2 instance and S3 bucket.
+#### Task 5.1 Before starting to create codeDeploy project create two IAM service roles for codeDeploy service to access EC2 instance and S3 bucket on your behalf.
 
 #### Task 5.2 Create a new EC2 instance, add the following userdata & a security group with ingress PORT 8080/22 open. TAG the EC2 instance with "Environment-Name = DEV"
 ```shell
@@ -105,11 +103,18 @@ CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & Sta
   sudo sudo ./install auto
 ```
 
-#### Task 5.3 Create a AppSpec.yml and checkin with the code along with its associated scripts - NOTE: buildspecs.yml file need to be altered to ensure that appspecs.yml & script folder is also included in the artifact section. 
+#### Task 5.3 Create a AppSpec.yml and checkin with the code along with its associated scripts
+NOTE: buildspecs.yml file need to be altered to ensure that AppSpec.yml & script folder is also included in the artifact section. 
 
 #### Task 5.4 Create new application in AWSCloudDeploy console
 
 #### Task 5.5 Create a new deployment plan
+
+
+
+
+
+
 
 ## Implementing CI/CD using CloudFoundation template 
 
