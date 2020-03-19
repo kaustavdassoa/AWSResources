@@ -132,10 +132,9 @@ NOTE: Ensure, that encription is disable on the S3 bucket. If you desired to tur
 ### Task 5: Create AWS CodePipeline Project to intregate everything into a single pipeline project.
 ![image](https://user-images.githubusercontent.com/5097017/77052896-83f40c00-69f3-11ea-82e8-3ccd184f644f.png)
 
-Code commit
-![](https://user-images.githubusercontent.com/5097017/77057833-932a8800-69fa-11ea-833d-031a070863be.png)
+AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This enables you to rapidly and reliably deliver features and updates. You can easily integrate AWS CodePipeline with third-party services such as GitHub or with your own custom plugin. With AWS CodePipeline, you only pay for what you use. There are no upfront fees or long-term commitments.
 
-Snapshot of the CodePipeline post code commit 
+Once source code is change, codepipline is trigrred automatically which invokes code build stage, on successfull build the build artifacts are deployed to the target using AWS CodeDeploy Stage.   
 
 ![](https://user-images.githubusercontent.com/5097017/77057707-5eb6cc00-69fa-11ea-9ce9-70fee7ffe51e.png)
 
