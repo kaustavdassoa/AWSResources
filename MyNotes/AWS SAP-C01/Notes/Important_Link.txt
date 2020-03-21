@@ -7,6 +7,14 @@ https://twitter.com/jeffbarr
 https://twitter.com/Werner
 
 
+How to create a AWS Lambda function in java and deploy directly to AWS
+https://howtodoinjava.com/aws/create-deploy-aws-lambda-function/
+
+YOUTUBE : AWS Lambda CI/CD
+https://www.youtube.com/watch?v=aGI4Wlm5c9U
+
+
+https://aws.amazon.com/blogs/compute/announcing-improved-vpc-networking-for-aws-lambda-functions/
 
 
 https://linuxacademy.com/course/aws-certified-solutions-architect-professional-2018/
