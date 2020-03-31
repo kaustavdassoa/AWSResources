@@ -25,7 +25,7 @@ Resources:
               - 'sts:AssumeRole'
       Path: /
       Policies:
-        - PolicyName:  CICDDemoEc2InstancePolicyForS3
+        - PolicyName:  CICDDemoEc2InstancePolicyForS3  # Policy for S3 access 
           PolicyDocument:
             Version: '2012-10-17'
             Statement:

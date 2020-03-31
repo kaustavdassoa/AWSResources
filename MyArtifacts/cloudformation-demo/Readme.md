@@ -181,9 +181,28 @@ Name: !Join ["-", [!Ref 'AWS::StackName', SecurityGroupTCP]]
 
 There are three types of metadata key.
 - AWS::CloudFormation::Designer  Auto generated when resources are drag and drop to the Cloud Formation template. 
-- AWS::CloudFormation::Interface Use for parameter grouping 
+- AWS::CloudFormation::Interface Use for cloud formation parameter grouping 
 - AWS::CloudFormation::Init Use for application installation and configuration on EC2 compute 
 
+
+#### Instance - userdata
+
+Through UserData, its possible to upload a bootstrap script to the EC2 instance, once the EC2 instance is launched the bootstrap script attached under **`UserData`** section gets loaded. ONLY during the instance launching this script will be executed, NOT during the instance restart.
+
+Example 
+![](https://user-images.githubusercontent.com/5097017/75089913-834a9000-5583-11ea-9dda-62ecc50f042e.png)
+
+
+#### Helper Scripts
+AWS CloudFormation provides the following Python helper scripts that you can use to install software and start services on an Amazon EC2 instance that you create as part of your stack:
+
+- cfn-init: Use to retrieve and interpret resource metadata, install packages, create files, and start services.
+
+- cfn-signal: Use to signal with a CreationPolicy or WaitCondition, so you can synchronize other resources in the stack when the prerequisite resource or application is ready.
+
+- cfn-get-metadata: Use to retrieve metadata for a resource or path to a specific key.
+
+- cfn-hup: Use to check for updates to metadata and execute custom hooks when changes are detected.
 
 
 

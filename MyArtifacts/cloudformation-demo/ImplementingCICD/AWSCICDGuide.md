@@ -1,6 +1,6 @@
 # CI CD using AWS Services 
 ## Objective
-* To demonstrate the CI/CD capabilities of AWS CodePipeline leveraging AWS CodeCommit , AWS CodeBuild , AWS CodeDeploy. 
+* Demonstrate the CI/CD capabilities of AWS CodePipeline leveraging AWS CodeCommit , AWS CodeBuild , AWS CodeDeploy. 
 * Monitor Deployment using AWS CloudWatch , AWS SNS (SimpleNotificationService), builds Logs etc.
 * Develop AWS CloudFormation templates for CI/CD pipeline.
 
@@ -10,18 +10,22 @@
 3. Lots of Patience.
 
 
-<center><h1><span style="color:red">PART 1 : Implementing CI/CD</span></h1></center>
+<center><h1><span style="color:red">PART 1 : Implementing CI/CD using AWS Console</span></h1></center>
 
 ## Implementing CI/CD pipeline using AWS console
+
 ### Task 1: Create a new repository CodeCommit Repositories.
 
-#### Task 1.1 Create CodeCommit repository 
+
+#### Task 1.1 Create CodeCommit repository
 
 #### Task 1.2 Generate HTTPS Git credentials for AWS CodeCommit for the IAM user. 
+
 ![image](https://user-images.githubusercontent.com/5097017/76604331-91615000-6534-11ea-959c-8dfb59096421.png)
 Note : Its always advisable to use IAM user instead of root user. 
 
-#### Task 1.3 Push the code using the downloaded credentials 
+#### Task 1.3 Push the code using the downloaded credentials
+
 ```git
 git init
 git add <project-folder-name>
@@ -38,6 +42,7 @@ git push -u origin master
 ![image](https://user-images.githubusercontent.com/5097017/76675792-536f3500-65e3-11ea-8c71-2cbe67cbe554.png)
 
 ### Task 2: Add buildspec.yml for the Porject.
+
 Sample buildspec.yml for installting springboot project using maven build tool ```mvn install```
 
 ```yml
@@ -63,23 +68,28 @@ artifacts:
 Note : buildspec.yml file should be placed directly under the repository location, thus its advisable to have separate repository for separate project. 
 
 ### Task 3: Create a new CodeBuild Porject.
+
 Code build project can be use to build the checked-in code. 
 
 
 ### Task 4: Add Notification for CodeBuild Phase Change & State change events.
+
 CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & State change events.<a href="https://docs.aws.amazon.com/codebuild/latest/userguide/sample-build-notifications.html" target="_blank">Refer Link for more details</a>
 
 
 ### Task 5: Create AWS CodeDeploy project.
+
 **Note:** CodeDeploy pricing For CodeDeploy on EC2/Lambda there is no additional charge for code deployments to Amazon EC2 or AWS Lambda through AWS CodeDeploy.For CodeDeploy On-Premises, one may have to pay $0.02 per on-premises instance update using AWS CodeDeploy. There are no minimum fees and no upfront commitments. For example, a deployment to three instances equals three instance updates. One will only be charged if CodeDeploy performs an update to an instance and will not be charged for any instances skipped during the deployment.
 
 **AWS CodeDeploy can deploy artifacts to**
+
 1. EC2 instance 
 2. EC2 autoscaling 
 3. AWS Lambda 
 4. AWS ECS (Elastic Container Services)
 
 **AWS CodeDeploy can deploy of types**
+
 1. Code 
 2. Serverless AWS Lambda Function
 3. Web & Configuration files 
@@ -91,7 +101,8 @@ CloudWatch can be cofigure to send Notification for CodeBuild Phase Change & Sta
 #### Task 5.1 Before starting to create codeDeploy project create two IAM service roles for codeDeploy service to access EC2 instance and S3 bucket on your behalf.
 
 #### Task 5.2 Create a new EC2 instance, add the following userdata & a security group with ingress PORT 8080/22 open. TAG the EC2 instance with "Environment-Name = DEV" "Instance-Type = CodeDeploy-Demo-SpringBoot-HelloWorld"
-```shell
+
+```unix
   #!/bin/bash -xe
   sudo yum update -y
   sudo yum install -y ruby > /tmp/ruby.install.log
@@ -112,6 +123,7 @@ Validation Checks
 
 
 #### Task 5.3 Create a appspec.yml and checkin with the code along with its associated scripts
+
 NOTE: buildspecs.yml file need to be altered to ensure that appspec.yml & script folder is also included in the artifact section. 
 
 #### Task 5.4 Create new application in AWSCloudDeploy console
@@ -120,6 +132,7 @@ NOTE: buildspecs.yml file need to be altered to ensure that appspec.yml & script
 #### Task 5.5 Create a new deployment group 
 
 #### Task 5.5 Create a new deployment 
+
 Once deployment is triggered  , one can see the the event  status in deployment event details 
 ![](https://user-images.githubusercontent.com/5097017/77051789-dc2a0e80-69f1-11ea-9cc6-46f20a1cf9d8.png)
 
@@ -130,6 +143,7 @@ NOTE: Ensure, that encription is disable on the S3 bucket. If you desired to tur
 
 
 ### Task 5: Create AWS CodePipeline Project to intregate everything into a single pipeline project.
+
 ![image](https://user-images.githubusercontent.com/5097017/77052896-83f40c00-69f3-11ea-82e8-3ccd184f644f.png)
 
 AWS CodePipeline is a fully managed continuous delivery service that helps you automate your release pipelines for fast and reliable application and infrastructure updates. CodePipeline automates the build, test, and deploy phases of your release process every time there is a code change, based on the release model you define. This enables you to rapidly and reliably deliver features and updates. You can easily integrate AWS CodePipeline with third-party services such as GitHub or with your own custom plugin. With AWS CodePipeline, you only pay for what you use. There are no upfront fees or long-term commitments.
@@ -137,15 +151,6 @@ AWS CodePipeline is a fully managed continuous delivery service that helps you a
 Once source code is change, codepipline is trigrred automatically which invokes code build stage, on successfull build the build artifacts are deployed to the target using AWS CodeDeploy Stage.   
 
 ![](https://user-images.githubusercontent.com/5097017/77057707-5eb6cc00-69fa-11ea-9ce9-70fee7ffe51e.png)
-
-
-
-
-
-
-
-
-
 
 
 <center><h1><span style="color:red">PART 2 : Implementing CI/CD using AWS CloudFormation Template<span></h1></center>
@@ -165,6 +170,7 @@ sudo ./install auto
 ```
 
 ### Task 2: Create InstanceProfile and add it to EC2 instaces. 
+
 Instance profile(s) are required for attaching IAM policies/roles to EC2 instances for accessing other AWS resources like S3,codeDeploy etc. 
 
 Note : When CloudFormation template contains a IAM Resource creation steps, one need to provide additional concent while creating the Stack.

@@ -1,0 +1,12 @@
+#!/bin/bash -xe
+sudo yum update -y
+sudo yum install -y ruby > /tmp/ruby.install.log
+sudo yum install -y wget > /tmp/wget.install.log
+sudo yum erase -y  java-1.7.0-openjdk.x86_64 > /tmp/jdk.unstall.log
+sudo yum install -y  java-1.8.0-openjdk.x86_64 > /tmp/jre.install.log
+sudo yum install -y  java-1.8.0-openjdk-devel > /tmp/jdk.install.log
+sudo yum install -y  tomcat > /tmp/tomcat.install.log
+cd /home/ec2-user
+wget https://aws-codedeploy-ap-south-1.s3.ap-south-1.amazonaws.com/latest/install
+chmod +x ./install
+sudo sudo ./install auto

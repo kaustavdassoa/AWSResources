@@ -35,12 +35,11 @@ Resources:
       - IpProtocol: tcp
         FromPort: '443'
         ToPort: '443'
-        CidrIp: 0.0.0.0/0  # HTTP access 
-      SecurityGroupIngress: 
+        CidrIp: 0.0.0.0/0  # HTTPS access 
       - IpProtocol: tcp
         FromPort: '80'
         ToPort: '80'
-        CidrIp: 0.0.0.0/0  # HTTPS access  
+        CidrIp: 0.0.0.0/0  # HTTP access  
 
 Outputs:
   InstanceId:

@@ -2,7 +2,7 @@
 Date: 02/05/2020
 
 ## Objective : 
-The objective of this POC is to showcase AWS Lambda Serveless CI/CD capability using AWS code deploy and also featuring AWS Serverless Application Model (SAM) capabilities.
+The objective of this POC is to showcase AWS Lambda Serveless CI/CD capability using AWS codepipeline and also featuring AWS Serverless Application Model (SAM) capabilities.
 ## Approach : 
 
 
@@ -15,6 +15,7 @@ The objective of this POC is to showcase AWS Lambda Serveless CI/CD capability u
 2. Edit the inline policy for adding additional privileges 
 ![Inline Policy for Additional Privileges ](https://user-images.githubusercontent.com/5097017/73839199-6b60d580-483b-11ea-9b62-2196eb4c8f50.png)
 
+3. Create a new s3 bucket 
 
 
 ## Reference Link :

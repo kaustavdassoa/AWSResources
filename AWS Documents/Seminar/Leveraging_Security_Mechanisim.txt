@@ -1,0 +1,9 @@
+Building Security Muscles 
+Setup Security Baseline - jobzero.in
+Delve In Automation https://bit.ly/2KYZWPk 
+Build Security Data Lake https://amzn.to/20r1Aah 
+Manual Threat Hunting with Athena https://amzn.to/20ubSe9 
+Apply Machine Learning https://amzn.to/37K5oDc 
+Slack Integration for custom action -  httos://bit.lv/212YY4D  
+
+https://community.snowflake.com/
