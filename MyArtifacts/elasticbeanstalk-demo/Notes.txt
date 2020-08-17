@@ -1,4 +1,0 @@
-https://stackoverflow.com/questions/30965979/how-to-deploy-spring-boot-application-war-to-aws-elastic-beanstalk
-Need to remove Jetty dependecies from the war package 
-
-https://www.javacodegeeks.com/2017/12/amazon-elastic-beanstalk-tutorial.html 

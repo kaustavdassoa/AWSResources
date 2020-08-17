@@ -1,1 +1,0 @@
-http://ec2-52-66-156-88.ap-south-1.compute.amazonaws.com:8080/ccdemo/sayHello
